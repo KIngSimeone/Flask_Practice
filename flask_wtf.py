@@ -5,6 +5,9 @@ from wtforms.validators import InputRequired, Length, AnyOf, Email
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Mysecret!'
+app.config['WTF_CSRF_ENABLED'] = True
+app.config['WTF_CSRF_SECRET_KEY'] = 'ADifferentSecret'
+app.config['WTF_CSRF_TIME_LIMIT'] = 3600
 
 class LoginForm(FlaskForm):
     username = StringField('Your Username', validators=[InputRequired('A username is required!'), Length(min=4, max=8, message='Must be between 4 and 8 characters')])
